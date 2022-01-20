@@ -21,58 +21,54 @@ class Hilo:
         self.is_playing = True
 
     def display(self):
+        print("Welcome to Hilo!")
         self.current_number = self.deck.numbers[0]
         print(f"The card is: {self.current_number}")
 
     def user_input(self):
         while self.is_playing:
-            letters = ["l","h","q"]        
+            letters = ["l", "h", "q"]
             self.display()
             self.user = input("Higher or lower? (h/l or q for quit): ").lower()
             while self.user not in letters:
                 print("Please enter h, l or q")
-                self.user = input("Higher or lower? (h/l or q for quit): ").lower()
-            
+                self.user = input(
+                    "Higher or lower? (h/l or q for quit): ").lower()
+
             self.second_number()
             self.compare()
 
     def second_number(self):
-        
         self.deck.number()
         self.next_number = self.deck.numbers[1]
-        print(f"Next card is: {self.next_number}")
+        if self.user != "q":
+            print(f"Next card is: {self.next_number}")
 
     def compare(self):
-        
+
         if self.user == "q":
             self.is_playing = False
             print(f"Your score is: {self.score}")
-            return
-        
-        
+
         elif self.user == "h":
             if self.current_number < self.next_number:
                 self.score += 100
             else:
                 self.score -= 75
-                
-            print(f"Your score is: {self.score}")
-            if self.score < 0:
-                self.is_playing = False
-            
-            
+
         else:
             if self.current_number > self.next_number:
                 self.score += 100
             else:
                 self.score -= 75
-            print(f"Your score is: {self.score}")
-            if self.score < 0:
-                self.is_playing = False               
-            
 
         self.deck.numbers.pop(0)
-
+        print(f"Your score is: {self.score}")
+        if self.score <= 0:
+            self.is_playing = False
+            self.play_again = input("Game Over. Play again? (y/n): ")
+            if self.play_again == "y":
+                main()
 
 
 def main():
