@@ -22,7 +22,7 @@ class Hilo:
         self.is_playing = True
 
     def display(self):
-        print(logo)
+        # print(logo)
         self.current_number = self.deck.numbers[0]
         print(f"The card is: {self.current_number}")
 
@@ -74,6 +74,7 @@ class Hilo:
 
 def main():
     hilo = Hilo()
+    print(logo)
     hilo.user_input()
 
 
