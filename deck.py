@@ -48,6 +48,11 @@ class Hilo:
             while self.user not in letters:
                 print("Please enter h, l or q")
                 self.user = input("Higher or lower? (h/l or q for quit): ").lower()
+            if self.user == "q":
+                print(f"Thanks for playing, Your score is: {self.score}")
+                self.is_playing = False
+                print()
+                return
 
             self.second_number()
             self.compare()
@@ -57,18 +62,14 @@ class Hilo:
             The new number is now index 1 and takend as the next number then displayed to the user"""
         self.deck.number()
         self.next_number = self.deck.numbers[1]
-        if self.user != "q":
-            print(f"Next card is: {self.next_number}")
+        print(f"Next card is: {self.next_number}")
 
     def compare(self):
         """The compare module compares the user input with the numbers and then computes the score.
             The first number in the numbers list us popped and a check is made to see if the game should continue"""
 
-        if self.user == "q":
-            self.is_playing = False
-            print(f"Your score is: {self.score}")
 
-        elif self.user == "h":
+        if self.user == "h":
             if self.current_number < self.next_number:
                 self.score += 100
             else:
