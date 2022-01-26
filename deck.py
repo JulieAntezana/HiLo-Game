@@ -102,17 +102,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-"""
-class Deck:
-    init
-    funtion: return a random number from range of 1 and 13
-    
-Class hilo:
-init 
-display function:
-takes a card from the deck class and then prints its
-it asks user input
-compare funtion:
-new number from the deck class 
-"""
