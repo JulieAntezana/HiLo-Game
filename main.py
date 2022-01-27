@@ -1,3 +1,14 @@
+"""
+Project:        HiLo Game
+Collaborators:  Julie Antezana, 
+                Marcus Ojo- Osasere,
+                Lukas Nakale
+                Rune Larsen.
+Date:           1/20-2022
+Last Update:    1/27-2022
+"""
+
+
 from deck import deck
 from art import logo
 import os
