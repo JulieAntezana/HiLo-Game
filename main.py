@@ -78,7 +78,7 @@ class Hilo:
         if self.score <= 0:
             self.is_playing = False
             self.play_again = input("Game Over. Play again? (y/n): ")
-            if self.play_again == "y":
+            if self.play_again == "y" or self.play_again == "Y":
                 main()
 
 
