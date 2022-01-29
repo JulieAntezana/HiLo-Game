@@ -8,10 +8,11 @@ Date:           1/20-2022
 Last Update:    1/27-2022
 """
 
-
+import random
 from deck import deck
 from art import logo
 import os
+
 
 class Hilo:
     """The Hilo class handles the game play, it initializes with the users score and the deck class """
@@ -19,13 +20,13 @@ class Hilo:
     def __init__(self):
         self.score = 300
         self.deck = deck()
-        self.deck.number()
+        self.deck.current()
         self.is_playing = True
 
     def display(self):
-        """The display module prints the current card to the user. it takes the first item and
+        """The display method prints the current card to the user. it takes the first item and
             in the array declared in the deck class"""
-        self.current_number = self.deck.numbers[0]
+        self.current_number = self.deck.drawcard[0]
         print(f"The card is: {self.current_number}")
 
     def user_input(self):
@@ -46,33 +47,20 @@ class Hilo:
                 print()
                 return
 
-            self.second_number()
+            self.deck.hidden()
             self.compare()
 
-    def second_number(self):
-        """The second_number module calls the number module in the deck class which adds a new number to the list of
-            The new number is now index 1 and takend as the next number then displayed to the user"""
-        self.deck.number()
-        self.next_number = self.deck.numbers[1]
-        print(f"Next card is: {self.next_number}")
-
     def compare(self):
-        """The compare module compares the user input with the numbers and then computes the score.
-            The first number in the numbers list us popped and a check is made to see if the game should continue"""
+        """The compare module compares the user input with the drawcard and then computes the score.
+            The first number in the drawcard list us popped and a check is made to see if the game should continue"""
 
-        if self.user == "h":
-            if self.current_number < self.next_number:
-                self.score += 100
-            else:
-                self.score -= 75
-
+        if self.deck.high and self.user == "h":
+            self.score += 100
         else:
-            if self.current_number > self.next_number:
-                self.score += 100
-            else:
-                self.score -= 75
+            self.score -= 75
 
-        self.deck.numbers.pop(0)
+        self.deck.shuffle()
+
         print(f"Your score is: {self.score}")
         print()
         if self.score <= 0:
@@ -91,4 +79,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
