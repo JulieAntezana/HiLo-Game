@@ -20,21 +20,17 @@ class Hilo:
     def __init__(self):
         self.score = 300
         self.deck = deck()
-        self.deck.current()
+        self.deck.new()
         self.is_playing = True
 
-    def display(self):
-        """The display method prints the current card to the user. it takes the first item and
-            in the array declared in the deck class"""
-        self.current_number = self.deck.drawcard[0]
-        print(f"The card is: {self.current_number}")
+
 
     def user_input(self):
         """The user_input module is loop, asks the user's input, verifies the input then proceeds to call the
             other modules required in the gameplay"""
         while self.is_playing:
             letters = ["l", "h", "q"]
-            self.display()
+            self.deck.display()
             self.user = input("Higher or lower? (h/l or q for quit): ").lower()
 
             while self.user not in letters:
@@ -53,11 +49,19 @@ class Hilo:
     def compare(self):
         """The compare module compares the user input with the drawcard and then computes the score.
             The first number in the drawcard list us popped and a check is made to see if the game should continue"""
+            
+        if self.user == "h":
+            if self.deck.high():
+                self.score += 100
+            else:
+                self.score -= 75
 
-        if self.deck.high and self.user == "h":
-            self.score += 100
         else:
-            self.score -= 75
+            if not self.deck.high():
+                
+                self.score += 100
+            else:
+                self.score -= 75
 
         self.deck.shuffle()
 
