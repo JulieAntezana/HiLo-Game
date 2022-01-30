@@ -50,18 +50,14 @@ class Hilo:
         """The compare module compares the user input with the drawcard and then computes the score.
             The first number in the drawcard list us popped and a check is made to see if the game should continue"""
             
-        if self.user == "h":
-            if self.deck.high():
-                self.score += 100
-            else:
-                self.score -= 75
+        if self.user == "h" and self.deck.high():
+            self.score += 100
 
+        elif self.user == "l" and not self.deck.high():                
+            self.score += 100
+            
         else:
-            if not self.deck.high():
-                
-                self.score += 100
-            else:
-                self.score -= 75
+            self.score -= 75
 
         self.deck.shuffle()
 
